@@ -74,8 +74,6 @@ all_data['Sales'] = all_data['Quantity Ordered'] * all_data['Price Each']
 
 import matplotlib.pyplot as plt
 
-import matplotlib.pyplot as plt
-
 months = range(1,13)
 print(months)
 
