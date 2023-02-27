@@ -6,13 +6,16 @@ import pandas as pd
 
 # *1 Aylik olarak verilen 'CVS' dosyalarini birlestir.
 
-files = [file for file in os.listdir('./SalesAnalysis1/Sales_Data') if not file.startswith('.')]
+files = [file for file in os.listdir('Sales Analysis/DirtySalesDate') if not file.startswith('.')]
 
 all_months_data = pd.DataFrame()
 
 for file in files:
-    current_data = pd.read_csv('./SalesAnalysis1/Sales_Data'+"/"+file)
+    current_data = pd.read_csv('Sales Analysis/DirtySalesDate'+"/"+file)
     all_months_data = pd.concat([all_months_data, current_data])
+
+
+current_data1 = pd.read_csv('Sales Analysis/DirtySalesDate' + '/' + 'Sales_April_2019.csv')
 
 all_months_data.to_csv("all_data.csv", index=False)
 
@@ -77,7 +80,7 @@ import matplotlib.pyplot as plt
 months = range(1,13)
 print(months)
 
-plt.bar(months,all_data.groupby(['Month']).sum()['Sales'])
+plt.bar(months, all_data.groupby(['Month']).sum()['Sales'])
 plt.xticks(months)
 plt.ylabel('Sales in USD ($)')
 plt.xlabel('Month number')
@@ -85,7 +88,7 @@ plt.show()
 
 # *10.1 Bar grafigi araciligiyla sehirlere gore satis rakamlarini gozlemleyelim.
 # 'SEABORN' kutuphanesini kullanalim
-# 'plt.xticks(rotation='vertical', size=8)' sehir isimlieri sigmadigindan dikey konuma getirim yazi boyutlarini kuculttuk
+# 'plt.xticks(rotation='vertical', size=8)' sehir isimlieri sigmadigindan dikey konuma getirip yazi boyutlarini kuculttuk
 
 import seaborn as sns
 
@@ -116,9 +119,11 @@ df = all_data[all_data['Order ID'].duplicated(keep=False)]
 
 # Ayni 'Order ID' ye sahip urunleri ',' ile birlestirip bir degisken olarak 'df' e atayalim.
 df['Grouped'] = df.groupby('Order ID')['Product'].transform(lambda x: ','.join(x))
+
 df.head()
 df.shape
 df.value_counts()
+df.describe()
 # Verileri tekillestirelim.
 df = df[['Order ID', 'Grouped']].drop_duplicates()
 # https://stackoverflow.com/questions/43348194/pandas-select-rows-if-id-appear-several-time
@@ -133,7 +138,7 @@ for row in df['Grouped']:
     row_list = row.split(',')
     count.update(Counter(combinations(row_list, 2)))
 
-for key,value in count.most_common(10):
+for key, value in count.most_common(10):
     print(key, value)
 
 # 13* En cok hangi urunun satildigini sutun grafikte gozlemleyelim.
