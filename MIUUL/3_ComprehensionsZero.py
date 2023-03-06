@@ -55,7 +55,7 @@ dictionary = {'a': 1,
 dictionary.keys()
 dictionary.values()
 dictionary.items()
-
+dictionary.
 {k: v ** 2 for (k, v) in dictionary.items()}
 
 {k.upper(): v + 5 for (k, v) in dictionary.items()}

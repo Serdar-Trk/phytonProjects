@@ -187,6 +187,7 @@ cltv_df["expected_purc_3_month"] = bgf.predict(4 * 3,
                                                cltv_df['frequency'],
                                                cltv_df['recency'],
                                                cltv_df['T'])
+cltv_df.head()
 ################################################################
 # Tahmin Sonuçlarının Değerlendirilmesi
 ################################################################
@@ -227,8 +228,8 @@ cltv = ggf.customer_lifetime_value(bgf,
 
 cltv.head()
 
-cltv = cltv.reset_index()
 
+cltv = cltv.reset_index()
 cltv_final = cltv_df.merge(cltv, on="Customer ID", how="left")
 cltv_final.sort_values(by="clv", ascending=False).head(10)
 

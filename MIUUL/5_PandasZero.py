@@ -62,6 +62,7 @@ df['sex'].value_counts()
 
 ##selection in pandas
 
+
 df[0:13]
 
 df.drop(0, axis=0).head()  # 0. indexi sildi
