@@ -34,6 +34,8 @@ s.tail(3)
 import seaborn as sns
 
 df = sns.load_dataset('titanic')
+titanic = df.copy()
+titanic.info()
 
 df.head()
 df.tail()
