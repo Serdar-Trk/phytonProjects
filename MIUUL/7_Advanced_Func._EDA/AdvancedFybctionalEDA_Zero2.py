@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-df = pd.read_csv("breast_cancer.csv")
+df = pd.read_csv("MIUUL/7_Advanced_Func._EDA/breast_cancer.csv")
 df = df.iloc[:, 1:-1]
 df.head()
 
